@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>S7 RP - Rules</title>
+<style>
+body { margin:0; font-family: Arial; background:black; color:white; direction:rtl; overflow-x:hidden; }
+canvas{position:fixed;top:0;left:0;z-index:-1;}
+.navbar{padding:20px;text-align:center;border-bottom:2px solid gold;box-shadow:0 0 20px gold;animation:glow 2s infinite alternate;}
+@keyframes glow{from{box-shadow:0 0 10px gold;}to{box-shadow:0 0 40px gold;}}
+.navbar h1{color:gold;text-shadow:0 0 20px gold;}
+.menu a{color:gold;text-decoration:none;margin:0 15px;font-weight:bold;}
+.menu a:hover{text-shadow:0 0 10px gold;}
+.container{padding:40px;}
+.rule{background:rgba(255,215,0,0.05);border:1px solid gold;margin-bottom:20px;padding:20px;border-radius:15px;opacity:0;transform:translateY(50px);transition:0.5s;}
+.rule.show{opacity:1;transform:translateY(0);box-shadow:0 0 20px gold,0 0 40px rgba(255,215,0,0.5);}
+.rule:hover{transform:scale(1.05);box-shadow:0 0 30px gold,0 0 50px rgba(255,215,0,0.7);}
+.rule h2{color:gold;}
+footer{text-align:center;padding:20px;color:gray;}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="navbar">
+  <h1>🔥 S7 RolePlay 🔥</h1>
+  <div class="menu">
+    <a href="home.html">Home</a>
+    <a href="rules.html">Rules</a>
+    <a href="join.html">Join</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="rule"><h2>1. الاحترام الكامل</h2><p>احترام اللاعبين والإدارة، لا إهانة أو سب.</p></div>
+  <div class="rule"><h2>2. منع الغش</h2><p>لا تستخدم أي سكريبت أو هاك، التجاوز يؤدي للطرد.</p></div>
+  <div class="rule"><h2>3. RP صحيح</h2><p>التزم بدورك، لا تقتل أو تسرق خارج سيناريو RP.</p></div>
+  <div class="rule"><h2>4. لا للإعلانات</h2><p>ممنوع نشر روابط سيرفرات أخرى أو منتجات خارجية.</p></div>
+  <div class="rule"><h2>5. التحكم بالأسلحة</h2><p>الأسلحة للاستخدام ضمن القوانين RP فقط.</p></div>
+  <div class="rule"><h2>6. السيارات والمركبات</h2><p>لا تسرق سيارات اللاعبين إلا في حالات RP واضحة.</p></div>
+  <div class="rule"><h2>7. الخروج عن حدود الخريطة</h2><p>ممنوع استغلال الخريطة للخروج عن الدور.</p></div>
+  <div class="rule"><h2>8. التعاون الجماعي</h2><p>ساعد الفريق ولا تحارب اللاعبين بدون سبب.</p></div>
+  <div class="rule"><h2>9. البلاغات</h2><p>أي استغلال أو خطأ أبلغ الإدارة فورًا.</p></div>
+  <div class="rule"><h2>10. الأنشطة الخاصة</h2><p>توجد أحداث RP خاصة، التزم بالمشاركة حسب التعليمات.</p></div>
+  <div class="rule"><h2>11. قواعد المجتمع</h2><p>ممنوع السبام أو استخدام الشات بطريقة مزعجة.</p></div>
+  <center><div class="rule" onclick="location.href='home.html'" style="cursor:pointer">⬅ رجوع</div></center>
+</div>
+
+<footer>✨ S7 RP © 2026</footer>
+
+<script>
+const rules=document.querySelectorAll(".rule");
+window.addEventListener("scroll",()=>{rules.forEach(r=>{if(r.getBoundingClientRect().top<window.innerHeight-50){r.classList.add("show");}});});
+const canvas=document.getElementById("particles");const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+let particles=[];for(let i=0;i<80;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*3+1,speed:Math.random()*1});}
+let mouseX=0,mouseY=0;window.addEventListener("mousemove",e=>{mouseX=e.clientX;mouseY=e.clientY;});
+function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle="gold";particles.forEach(p=>{let px=(mouseX-canvas.width/2)*0.02;let py=(mouseY-canvas.height/2)*0.02;ctx.beginPath();ctx.arc(p.x+px,p.y+py,p.size,0,Math.PI*2);ctx.fill();p.y+=p.speed;if(p.y>canvas.height){p.y=0;p.x=Math.random()*canvas.width;}});requestAnimationFrame(draw);}
+draw();window.addEventListener("resize",()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+</script>
+</body>
+</html>
